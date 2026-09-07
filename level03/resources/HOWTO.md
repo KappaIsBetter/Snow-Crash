@@ -89,9 +89,9 @@ string(CONCAT RESOLVED_BUILD_PATH "${RUNTIME_BASE}" "/" "${WORKSPACE_NAME}")
 include(${RESOLVED_BUILD_PATH}/build.cmake)
 
 ```
+Important part :
 
-CONF_CONTENT = BUFFER
-
+```bash
 file(READ "/etc/burbclave/burbclave.conf" CONF_CONTENT)
 
 string(REGEX MATCH "runtime_base=([^\n]+)" _ ${CONF_CONTENT})
@@ -102,5 +102,4 @@ set(WORKSPACE_NAME ${CMAKE_MATCH_1})
 
 string(CONCAT RESOLVED_BUILD_PATH "${RUNTIME_BASE}" "/" "${WORKSPACE_NAME}")
 
-
-mkdir -p /etc/burbclave
+```
