@@ -1,16 +1,14 @@
 # Level00
 
-## Enumeration
-
 The flag that we need to catch is protected in a folder that we can't access :
 ```bash
-level00@snowcrash:/home/level00$ ls -ld /home/flag00
+$ ls -ld /home/flag00
 drwxr-x--- 2 flag00 flag00 4096 Jun  9 19:03 /home/flag00
 ```
 
 We look for SUID and SGID files, to access elevation :
 ```bash
-find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+$ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
 ```
 
 That gives us :
