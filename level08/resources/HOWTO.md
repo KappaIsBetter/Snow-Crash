@@ -210,19 +210,53 @@ print("[+] Server Response:\n", response)
 s.close()
 ```
 
-Inside the C code, the binary reads the very first byte (1 byte = 8 bits) and expects it to hold two pieces of information at the same time:The Protocol Version, which must be 1.The Command ID, which for CMD_ADMIN is 2.To fit both numbers into a single byte, the developer used Bitfields (dividing 1 byte into smaller groups of bits). In memory, the layout of that first byte looks like this:
-┌───────────────────────┬───────────────┬──────────────────────────┐
-│ Command ID (3 bits)   │ State (2 bits)│ Protocol Version (3 bits)│
-└───────────────────────┴───────────────┴──────────────────────────┘
-      Bit 7 6 5             Bit 4 3             Bit 2 1 0
+Inside the C code, the binary reads the very first byte (1 byte = 8 bits)
+and expects it to hold multiple pieces of information at the same time:
 
-the number : 2 is in slots : 5, 6, and 7. So we do bitshifting 5 time to the left and we merge to get this :
+- Protocol Version: `1`
+- Command ID (`CMD_ADMIN`): `2`
 
-  01000000  (Our shifted Command ID: 2 << 5)
-+ 00000001  (Our Version: 1)
+The developer uses C bitfields to pack these values into a single byte.
+
+```text
+┌───────────────────────┬────────────────┬──────────────────────────┐
+│ Command ID (3 bits)   │ State (2 bits) │ Protocol Version (3 bits)│
+└───────────────────────┴────────────────┴──────────────────────────┘
+      Bits 7 6 5             Bits 4 3             Bits 2 1 0
+```
+
+The Command ID `2` must occupy bits 5, 6, and 7, so we shift it
+5 positions to the left:
+
+```text
+2 << 5
+
+00000010
+   << 5
+────────
+01000000
+```
+
+The protocol version is `1`:
+
+```text
+00000001
+```
+
+We then combine both values using a bitwise OR:
+
+```text
+  01000000   Command ID: 2 << 5
+| 00000001   Protocol Version: 1
 ──────────
-  01000001  (The final byte sent to the server)
+  01000001   Final byte
+```
 
+So the final byte sent to the server is:
+
+```text
+01000001 = 0x41
+```
 then we sent it and we got the flag !! 
 
 ## 5. Flag Retrieval
