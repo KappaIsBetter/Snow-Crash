@@ -22,8 +22,8 @@ Token does not meet policy requirements.
 level09@snowcrash:/opt/snowcrash/level09$ 
 ```
 
-Now we know that er have to do some retro engineering to understandwhat the binary does :
-(strace does not give us a lot of information so we're gonna use string !)
+Now we know that we have to do some retro engineering to understand what the binary does :
+(strace does not give us a lot of information so we're gonna use `strings` !)
 
 ```bash
 level09@snowcrash:/opt/snowcrash/level09$ strings da5id | grep -E '[a-z]{3,}'
