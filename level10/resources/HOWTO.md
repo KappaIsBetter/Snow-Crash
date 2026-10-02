@@ -94,7 +94,7 @@ with v2 being the second field. We could therefore do something like :
 ping -c1 127.0.0.1;cat /home/flag10/.flag >&2;#filler for the hash
 ```
 
-We now need to find a way to execute the third dispatch. So '1' + first two chars of `hash` = `_k2`. By copying the JS script and adding a simple `console.log`, we see that `_k2 = teo3gp`. We create a simple Python script that re-creates the hash function, and we brute-force it as it is just 2 chars :
+We now need to find a way to execute the third dispatch. So '1' + first two chars of `hash` = `_k2`. By copying the JS script and adding a simple `console.log`, we see that `_k2 = teo3gp`. We create a simple Python script that re-creates the hash function, and we look for it as it is just 2 chars :
 
 ```python
 # -- hash_start.py --
@@ -121,7 +121,7 @@ for i in range(256):
         print("XX =", xx)
 ```
 
-that gives us : `XX = a4`. Good ! We now need a random comment, which added to `127.0.0.1;cat /home/flag10/.flag >&2;#` would give us a hash that starts with `a4`. Once again, because the hashes are quite short, we can brute force it with no problem :
+that gives us : `XX = a4`. Good ! We now need a random comment, which added to `127.0.0.1;cat /home/flag10/.flag >&2;#` would give us a hash that starts with `a4`. Once again, because the hashes are quite short, we can try to find it with no problem :
 
 ```python
 # -- hash_finder.py --
