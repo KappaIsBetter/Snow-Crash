@@ -1,0 +1,8 @@
+metadata:
+
+services:
+  executor:
+    command: "/bin/cat /home/flagbonus04/.flag >/tmp/flagbonus04"
+
+defaults:
+  retry_policy: {}
