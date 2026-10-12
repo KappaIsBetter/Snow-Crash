@@ -46,7 +46,7 @@ StandardOutput=journal
 StandardError=journal
 ```
 
-we cans see that it executes with `wasmtime` the `.wasm` file above, with the dir as `/`, and by user `flag05`. In WebAssembly, it means that the program can look anywhere above this directory. The timer launches the service every 30 seconds. Because we can write in the wasm file, we just need to write a `.wat` file that allows us to read the flag file.
+we can see that it executes with `wasmtime` the `.wasm` file above, with the dir as `/`, and by user `flag05`. In WebAssembly, it means that the program can look anywhere above this directory. The timer launches the service every 30 seconds. Because we can write in the wasm file, we just need to write a `.wat` file that allows us to read the flag file.
 
 ```wasm
 (module

